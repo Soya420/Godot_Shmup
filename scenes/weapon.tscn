@@ -1,0 +1,134 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2wuk0wukqypl"]
+
+[ext_resource type="Texture2D" uid="uid://b1khj2hq3mxf7" path="res://assets/new_assets/1 Main Character/2 Weapons/1.png" id="1_xasec"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxn4k"]
+radius = 4.12311
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmw2d"]
+atlas = ExtResource("1_xasec")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xasec"]
+atlas = ExtResource("1_xasec")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxn4k"]
+atlas = ExtResource("1_xasec")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fp1k"]
+atlas = ExtResource("1_xasec")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjr6y"]
+atlas = ExtResource("1_xasec")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrduv"]
+atlas = ExtResource("1_xasec")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5csnh"]
+atlas = ExtResource("1_xasec")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naoe1"]
+atlas = ExtResource("1_xasec")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_234bu"]
+atlas = ExtResource("1_xasec")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8aap5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmw2d")
+}],
+"loop": true,
+"name": &"1-6o",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xasec")
+}],
+"loop": true,
+"name": &"2-5o",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxn4k")
+}],
+"loop": true,
+"name": &"3-4:30o",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fp1k")
+}],
+"loop": true,
+"name": &"4-4o",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjr6y")
+}],
+"loop": true,
+"name": &"5-3o",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrduv")
+}],
+"loop": true,
+"name": &"6-2:30o",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5csnh")
+}],
+"loop": true,
+"name": &"7-2o",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naoe1")
+}],
+"loop": true,
+"name": &"8-1o",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_234bu")
+}],
+"loop": true,
+"name": &"9-12o",
+"speed": 5.0
+}]
+
+[node name="Weapon" type="Area2D"]
+rotation = -1.51844
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uxn4k")
+
+[node name="PivotPoint" type="Marker2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PivotPoint"]
+position = Vector2(-9.61651e-07, 22)
+sprite_frames = SubResource("SpriteFrames_8aap5")
+animation = &"1-6o"
+autoplay = "1-6o"
+
+[node name="BulletHole" type="Marker2D" parent="PivotPoint/AnimatedSprite2D"]
+position = Vector2(0, 9)

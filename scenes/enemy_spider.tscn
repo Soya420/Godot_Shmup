@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://cv8ttxhtxjknk"]
+[gd_scene load_steps=28 format=3 uid="uid://cv8ttxhtxjknk"]
 
 [ext_resource type="Texture2D" uid="uid://bccxeile5nm1c" path="res://assets/new_assets/3 Enemies/6/DeathSD.png" id="1_5hhxc"]
+[ext_resource type="Script" uid="uid://cpfki45l22ap" path="res://scripts/enemy_spider.gd" id="1_d6lv2"]
 [ext_resource type="Texture2D" uid="uid://c4k4uifsm8m25" path="res://assets/new_assets/3 Enemies/6/RunSD.png" id="1_trxdq"]
 [ext_resource type="Texture2D" uid="uid://djxo5gd1jtlgj" path="res://assets/new_assets/3 Enemies/6/RunSU.png" id="2_51h7o"]
 [ext_resource type="Texture2D" uid="uid://18wtid13smex" path="res://assets/new_assets/3 Enemies/6/DeathSU.png" id="2_d6lv2"]
@@ -172,12 +173,13 @@ animations = [{
 radius = 8.0
 
 [node name="Enemy_Spider" type="CharacterBody2D"]
+script = ExtResource("1_d6lv2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2cr82")
 animation = &"run_up"
 autoplay = "run_down"
-frame_progress = 0.435259
+frame_progress = 0.340141
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bu0q6")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://d1sqn4b5k6s1x"]
+[gd_scene load_steps=10 format=4 uid="uid://d1sqn4b5k6s1x"]
 
 [ext_resource type="Texture2D" uid="uid://lhnsten51ym" path="res://assets/new_assets/2 Location/1 Tiles/Tileset.png" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dyqo800xwswt1" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://dfh12ddvea4od" path="res://assets/new_assets/4 GUI/1 Interface/Tileset.png" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bvnd0ul6wa57b" path="res://scenes/portal.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://yeyoxm8i8on2" path="res://scenes/small_rock.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://cv8ttxhtxjknk" path="res://scenes/enemy_spider.tscn" id="6_p57ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("1_lnu2h")
@@ -321,6 +322,8 @@ tile_map_data = PackedByteArray("AAD7/wEAAAAAAAkAAAD7/wIAAAAHAAYAAAD7/wMAAAAAAAI
 tile_set = SubResource("TileSet_u5sy4")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+y_sort_enabled = true
+platform_floor_layers = 4294967040
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
@@ -333,7 +336,25 @@ limit_bottom = 900
 
 [node name="Animated_Portal" parent="Environment" instance=ExtResource("4_lbhrr")]
 position = Vector2(-352, -33)
+collision_layer = 3
 
 [node name="small_rock" parent="Environment" instance=ExtResource("5_iywne")]
 position = Vector2(219, 124)
 scale = Vector2(1.5, 1.5)
+collision_layer = 3
+
+[node name="Enemy_Spider1" parent="." instance=ExtResource("6_p57ef")]
+position = Vector2(-234, 90)
+collision_layer = 3
+
+[node name="Enemy_Spider2" parent="." instance=ExtResource("6_p57ef")]
+position = Vector2(8, 162)
+collision_layer = 3
+
+[node name="Enemy_Spider3" parent="." instance=ExtResource("6_p57ef")]
+position = Vector2(263, 47)
+collision_layer = 3
+
+[node name="Enemy_Spider4" parent="." instance=ExtResource("6_p57ef")]
+position = Vector2(-275, -51)
+collision_layer = 3
