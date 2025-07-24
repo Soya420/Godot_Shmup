@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cv8ttxhtxjknk"]
+[gd_scene load_steps=31 format=3 uid="uid://cv8ttxhtxjknk"]
 
 [ext_resource type="Texture2D" uid="uid://bccxeile5nm1c" path="res://assets/new_assets/3 Enemies/6/DeathSD.png" id="1_5hhxc"]
 [ext_resource type="Script" uid="uid://cpfki45l22ap" path="res://scripts/enemy_spider.gd" id="1_d6lv2"]
@@ -194,6 +194,9 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bu0q6"]
+radius = 8.06226
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d6lv2"]
 radius = 8.0
 
 [node name="Enemy_Spider" type="CharacterBody2D"]
@@ -205,4 +208,15 @@ sprite_frames = SubResource("SpriteFrames_2cr82")
 animation = &"die_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_bu0q6")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -1)
+scale = Vector2(1.045, 1.045)
+shape = SubResource("CircleShape2D_d6lv2")
+debug_color = Color(0.709773, 0.371224, 0.802967, 0.42)

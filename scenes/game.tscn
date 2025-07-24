@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://d1sqn4b5k6s1x"]
+[gd_scene load_steps=11 format=4 uid="uid://d1sqn4b5k6s1x"]
 
 [ext_resource type="Texture2D" uid="uid://lhnsten51ym" path="res://assets/new_assets/2 Location/1 Tiles/Tileset.png" id="1_lnu2h"]
+[ext_resource type="Script" uid="uid://d3qfbb43meih8" path="res://scripts/game.gd" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://dyqo800xwswt1" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://dfh12ddvea4od" path="res://assets/new_assets/4 GUI/1 Interface/Tileset.png" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bvnd0ul6wa57b" path="res://scenes/portal.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://yeyoxm8i8on2" path="res://scenes/small_rock.tscn" id="5_iywne"]
-[ext_resource type="PackedScene" uid="uid://cv8ttxhtxjknk" path="res://scenes/enemy_spider.tscn" id="6_p57ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("1_lnu2h")
@@ -314,7 +314,14 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_iywne")
 sources/1 = SubResource("TileSetAtlasSource_p57ef")
 
+[sub_resource type="Curve2D" id="Curve2D_p57ef"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -314, -186, 0, 0, 0, 0, 316, -187, 0, 0, 0, 0, 314, 193, 0, 0, 0, 0, -314, 195, 0, 0, 0, 0, -314, -186)
+}
+point_count = 5
+
 [node name="Game" type="Node2D"]
+script = ExtResource("1_u5sy4")
 
 [node name="TileLayer0" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -332,6 +339,14 @@ limit_top = -1500
 limit_right = 1350
 limit_bottom = 900
 
+[node name="Path2D" type="Path2D" parent="Player"]
+curve = SubResource("Curve2D_p57ef")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-314, -186)
+rotation = -0.0015873
+
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="Animated_Portal" parent="Environment" instance=ExtResource("4_lbhrr")]
@@ -343,18 +358,8 @@ position = Vector2(219, 124)
 scale = Vector2(1.5, 1.5)
 collision_layer = 3
 
-[node name="Enemy_Spider1" parent="." instance=ExtResource("6_p57ef")]
-position = Vector2(-234, 90)
-collision_layer = 3
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
 
-[node name="Enemy_Spider2" parent="." instance=ExtResource("6_p57ef")]
-position = Vector2(8, 162)
-collision_layer = 3
-
-[node name="Enemy_Spider3" parent="." instance=ExtResource("6_p57ef")]
-position = Vector2(263, 47)
-collision_layer = 3
-
-[node name="Enemy_Spider4" parent="." instance=ExtResource("6_p57ef")]
-position = Vector2(-275, -51)
-collision_layer = 3
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
