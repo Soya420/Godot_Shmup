@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var player = $"../Player"
 @onready var animation_enemy = $AnimatedSprite2D
 
+signal spider_died
+
 var health = 3
 var is_dead = false
 var is_hurt = false
@@ -32,12 +34,15 @@ func deal_damage():
 		take_dmg(direction)
 		if health <= 0:
 			die(direction)
-
+			
 
 # All Animation Functions: Die, Take Damage and Walk
 func die(direction):
 	is_dead = true
 	velocity = Vector2.ZERO
+	
+	# Emit signal to notify that spider died (for score)
+	spider_died.emit()
 	
 	if direction.x > 0 && direction.y < 0: # Bottom Left of player
 		animation_enemy.flip_h = false

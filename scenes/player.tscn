@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dyqo800xwswt1"]
+[gd_scene load_steps=37 format=3 uid="uid://dyqo800xwswt1"]
 
 [ext_resource type="Texture2D" uid="uid://c1v8rye3l63h0" path="res://assets/new_assets/1 Main Character/1 Character/Idle1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cdy1kxow6rejx" path="res://scripts/player.gd" id="1_g2els"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c5ynkua1k8xju" path="res://assets/new_assets/1 Main Character/1 Character/Death3.png" id="4_smehm"]
 [ext_resource type="Texture2D" uid="uid://0v0rcy0gacqb" path="res://assets/new_assets/1 Main Character/1 Character/Walk3.png" id="4_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://bp0xdds22q015" path="res://assets/new_assets/1 Main Character/1 Character/Walk1.png" id="5_fjrip"]
+[ext_resource type="Texture2D" uid="uid://k03c3dydcdtr" path="res://assets/new_assets/1 Main Character/1 Character/Death1.png" id="5_ur7pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60mlk"]
 atlas = ExtResource("4_smehm")
@@ -23,6 +24,22 @@ region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
 atlas = ExtResource("4_smehm")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l71n6"]
+atlas = ExtResource("5_ur7pv")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke2ow"]
+atlas = ExtResource("5_ur7pv")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
+atlas = ExtResource("5_ur7pv")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("5_ur7pv")
 region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
@@ -113,10 +130,28 @@ animations = [{
 "name": &"death_left-right",
 "speed": 7.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke2ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke2ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujl30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}],
+"loop": false,
 "name": &"death_up-down",
-"speed": 7.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -193,30 +228,6 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
 radius = 8.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smehm"]
-bg_color = Color(0.117109, 0.117109, 0.117109, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ur7pv"]
-bg_color = Color(0.316189, 0.868599, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
 
@@ -228,8 +239,10 @@ script = ExtResource("3_fjrip")
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"death_left-right"
+animation = &"death_up-down"
 autoplay = "idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)
@@ -244,14 +257,3 @@ collision_mask = 8
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_smehm")
 debug_color = Color(0.836466, 0.286675, 0.661396, 0.42)
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-unique_name_in_owner = true
-offset_left = -63.0
-offset_top = 150.0
-offset_right = 64.0
-offset_bottom = 160.0
-theme_override_styles/background = SubResource("StyleBoxFlat_smehm")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ur7pv")
-value = 100.0
-show_percentage = false

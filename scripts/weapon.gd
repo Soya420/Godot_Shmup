@@ -12,6 +12,10 @@ const RATE_OF_FIRE: float = 0.25
 var can_shoot: bool = true
 
 func _physics_process(delta: float) -> void:
+	# Don't process weapon if player is dead
+	if player.is_dead:
+		return
+		
 	var direction = get_global_mouse_position() - player.global_position
 	
 	pivot_point.rotation = direction.angle()
@@ -25,6 +29,10 @@ func _physics_process(delta: float) -> void:
 		shoot()
 
 func shoot():
+	# Additional safety check - don't shoot if player is dead
+	if player.is_dead:
+		return
+		
 	var bullet = BULLET_SCENE.instantiate()
 	var shoot_direction = (get_global_mouse_position() - bullet_hole.global_position).normalized()
 	bullet.setup(bullet_hole.global_position, shoot_direction)

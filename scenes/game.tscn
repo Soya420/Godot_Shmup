@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://d1sqn4b5k6s1x"]
+[gd_scene load_steps=14 format=4 uid="uid://d1sqn4b5k6s1x"]
 
 [ext_resource type="Texture2D" uid="uid://lhnsten51ym" path="res://assets/new_assets/2 Location/1 Tiles/Tileset.png" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://d3qfbb43meih8" path="res://scripts/game.gd" id="1_u5sy4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfh12ddvea4od" path="res://assets/new_assets/4 GUI/1 Interface/Tileset.png" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bvnd0ul6wa57b" path="res://scenes/portal.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://yeyoxm8i8on2" path="res://scenes/small_rock.tscn" id="5_iywne"]
+[ext_resource type="FontFile" uid="uid://bbv4nc27xv626" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_u5sy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("1_lnu2h")
@@ -320,6 +321,31 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5sy4"]
+bg_color = Color(0.117109, 0.117109, 0.117109, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gee14"]
+bg_color = Color(0.316189, 0.868599, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 16
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u5sy4")
 
@@ -362,4 +388,78 @@ collision_layer = 3
 wait_time = 0.75
 autostart = true
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("5_u5sy4")
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -123.0
+offset_top = -22.0
+offset_right = 123.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_u5sy4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gee14")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="UI/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_u5sy4")
+theme_override_font_sizes/font_size = 16
+text = "HP"
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 0
+offset_left = 363.0
+offset_top = 93.0
+offset_right = 777.0
+offset_bottom = 141.0
+theme_override_fonts/font = ExtResource("5_u5sy4")
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
