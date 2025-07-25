@@ -515,6 +515,7 @@ text = "HP"
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOver"]
 anchors_preset = 15
