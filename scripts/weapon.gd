@@ -12,7 +12,6 @@ const RATE_OF_FIRE: float = 0.25
 var can_shoot: bool = true
 
 func _physics_process(delta: float) -> void:
-	# Don't process weapon if player is dead
 	if player.is_dead:
 		return
 		
@@ -29,7 +28,6 @@ func _physics_process(delta: float) -> void:
 		shoot()
 
 func shoot():
-	# Additional safety check - don't shoot if player is dead
 	if player.is_dead:
 		return
 		

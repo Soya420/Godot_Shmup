@@ -388,9 +388,9 @@ collision_layer = 3
 wait_time = 0.75
 autostart = true
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="InGameUI" type="CanvasLayer" parent="."]
 
-[node name="ScoreLabel" type="Label" parent="UI"]
+[node name="ScoreLabel" type="Label" parent="InGameUI"]
 unique_name_in_owner = true
 offset_left = 20.0
 offset_top = 20.0
@@ -400,7 +400,7 @@ theme_override_fonts/font = ExtResource("5_u5sy4")
 theme_override_font_sizes/font_size = 24
 text = "Score: 0"
 
-[node name="ProgressBar" type="ProgressBar" parent="UI"]
+[node name="ProgressBar" type="ProgressBar" parent="InGameUI"]
 unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
@@ -419,7 +419,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gee14")
 value = 100.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="UI/ProgressBar"]
+[node name="Label" type="Label" parent="InGameUI/ProgressBar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
