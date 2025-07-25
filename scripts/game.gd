@@ -29,5 +29,5 @@ func _on_player_health_depleted():
 	%ProgressBar.visible = false
 	%ScoreLabel.visible = false
 	# Update the game over label to show final score
-	%GameOver/ColorRect/Label.text = "GAME OVER\nFinal Score: " + str(score)
+	%GameOver/ColorRect/FinalScore.text = "Final Score: " + str(score)
 	get_tree().paused = true
