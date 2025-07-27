@@ -8,27 +8,38 @@ func _ready():
 	# Initialize high score display
 	%GameOver/ColorRect/HighScore.text = "Highscore: " + str(high_score)
 
-func spawn_mob():
+func spawn_spider():
 	var new_spider = preload("res://scenes/enemy_spider.tscn").instantiate()
 	%PathFollow2D.progress_ratio = randf()
 	new_spider.global_position = %PathFollow2D.global_position
-	
 	new_spider.spider_died.connect(_on_spider_died)
-	
 	add_child(new_spider)
+
+func spawn_guy():
+	var new_guy = preload("res://scenes/enemy_guy.tscn").instantiate()
+	%PathFollow2D.progress_ratio = randf()
+	new_guy.global_position = %PathFollow2D.global_position
+	new_guy.guy_died.connect(_on_guy_died)
+	add_child(new_guy)
 
 func _on_spider_died():
 	score += 1
 	%ScoreLabel.text = "Score: " + str(score)
 
+func _on_guy_died():
+	score += 2
+	%ScoreLabel.text = "Score: " + str(score)
 
-func _on_timer_timeout() -> void:
-	spawn_mob()
+func _on_timer_spider_timeout() -> void:
+	spawn_spider()
+func _on_timer_guy_timeout() -> void:
+	spawn_guy()
 
 
 func _on_player_health_depleted():
 	# Stop spawning more enemies
-	$Timer.stop()
+	$TimerSpider.stop()
+	$TimerGuy.stop()
 	
 	await get_tree().create_timer(1).timeout
 	
@@ -66,7 +77,8 @@ func reset_game():
 	%ScoreLabel.visible = true
 	
 	# Restart enemy spawning
-	$Timer.start()
+	$TimerSpider.start()
+	$TimerGuy.start()
 
 func clear_enemies():
 	# Remove all enemy spiders from the scene

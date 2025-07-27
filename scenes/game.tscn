@@ -459,8 +459,12 @@ position = Vector2(219, 124)
 scale = Vector2(1.5, 1.5)
 collision_layer = 3
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TimerSpider" type="Timer" parent="."]
 wait_time = 0.75
+autostart = true
+
+[node name="TimerGuy" type="Timer" parent="."]
+wait_time = 4.0
 autostart = true
 
 [node name="InGameUI" type="CanvasLayer" parent="."]
@@ -618,6 +622,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dinhu")
 text = "Exit Game"
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerSpider" to="." method="_on_timer_spider_timeout"]
+[connection signal="timeout" from="TimerGuy" to="." method="_on_timer_guy_timeout"]
 [connection signal="pressed" from="GameOver/ColorRect/ReplayButton" to="." method="_on_replay_button_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/GameOverExitButton" to="." method="_on_game_over_exit_button_pressed"]
