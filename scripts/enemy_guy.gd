@@ -64,20 +64,6 @@ func die(direction):
 	await get_tree().create_timer(0.6).timeout
 	queue_free()
 
-func take_dmg(direction):
-	if direction.x > 0 && direction.y < 0: # Bottom Left of player
-		animation_enemy.flip_h = false
-		animation_enemy.play("hurt_up")
-	elif direction.x < 0 && direction.y < 0: # Bottom Right of player
-		animation_enemy.flip_h = true
-		animation_enemy.play("hurt_up")
-	elif direction.x > 0 && direction.y > 0: # Top Left of player
-		animation_enemy.flip_h = false
-		animation_enemy.play("hurt_down")
-	elif direction.x < 0 && direction.y > 0: # Top Right of player
-		animation_enemy.flip_h = true
-		animation_enemy.play("hurt_down")
-
 func walk_animations(direction):
 	if not is_dead and not is_hurt:
 		if direction.x > 0 && direction.y < 0: # Bottom Left of player
