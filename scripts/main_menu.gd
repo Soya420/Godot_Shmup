@@ -6,7 +6,7 @@ func _on_play_button_pressed():
 
 
 func _on_guide_button_pressed():
-	get_tree().change_scene_to_file("")
+	get_tree().change_scene_to_file("res://scenes/how_to_play.tscn")
 
 
 func _on_exit_button_pressed():

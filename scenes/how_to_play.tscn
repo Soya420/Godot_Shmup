@@ -1,0 +1,174 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdacv5l3ouktw"]
+
+[ext_resource type="Texture2D" uid="uid://3rtvgumbj3jk" path="res://assets/mars.png" id="1_d4i75"]
+[ext_resource type="Script" uid="uid://oe3wyxjgw1dp" path="res://scripts/how_to_play.gd" id="1_xkrkv"]
+[ext_resource type="FontFile" uid="uid://c3atvq4diuemj" path="res://assets/fonts/PixelOperator8.ttf" id="2_30apa"]
+[ext_resource type="FontFile" uid="uid://bbv4nc27xv626" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_xkrkv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_88ieg"]
+texture = ExtResource("1_d4i75")
+modulate_color = Color(0.754825, 0.754825, 0.754825, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_30apa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkrkv"]
+bg_color = Color(0.301961, 0.301961, 0.301961, 0.827451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wi5qh"]
+bg_color = Color(0.160629, 0.160629, 0.160629, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0xnd"]
+bg_color = Color(0.231373, 0.231373, 0.231373, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HowToPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xkrkv")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_88ieg")
+
+[node name="WASD" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = -220.0
+offset_right = -117.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_30apa")
+theme_override_font_sizes/font_size = 48
+text = "
+W - up
+A - left
+S - down
+D - right"
+
+[node name="WASD2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = 156.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_30apa")
+theme_override_font_sizes/font_size = 48
+text = "Aim: curser
+Shoot: Left click (hold)"
+
+[node name="Movement" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -544.0
+offset_top = -244.0
+offset_right = 95.0
+offset_bottom = -172.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_xkrkv")
+theme_override_font_sizes/font_size = 64
+text = "Movement:"
+
+[node name="Shoot" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -544.0
+offset_top = 68.0
+offset_right = 128.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_xkrkv")
+theme_override_font_sizes/font_size = 64
+text = "Aim & Shoot:"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 352.0
+offset_top = -276.0
+offset_right = 552.0
+offset_bottom = -212.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_30apa")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_30apa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xkrkv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wi5qh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_e0xnd")
+text = "<- Menu"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
