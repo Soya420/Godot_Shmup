@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfbrblhk17vld"]
+[gd_scene load_steps=16 format=3 uid="uid://cfbrblhk17vld"]
 
 [ext_resource type="Texture2D" uid="uid://3rtvgumbj3jk" path="res://assets/mars.png" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://bbv4nc27xv626" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://dqnblmfssof8r" path="res://scripts/main_menu.gd" id="1_wu84c"]
 [ext_resource type="FontFile" uid="uid://c3atvq4diuemj" path="res://assets/fonts/PixelOperator8.ttf" id="2_bqqt6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
@@ -102,6 +103,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wu84c")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -193,3 +195,7 @@ theme_override_font_sizes/font_size = 64
 text = "Mars Survivor"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="GuideButton" to="." method="_on_guide_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

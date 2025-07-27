@@ -11,6 +11,10 @@ var is_hurt = false
 var hurt_timer = 0.0
 const HURT_DURATION = 0.05
 
+func _ready():
+	# Add to enemies group for easy cleanup
+	add_to_group("enemies")
+
 func _physics_process(_delta: float) -> void:
 	if is_hurt:
 		hurt_timer -= _delta

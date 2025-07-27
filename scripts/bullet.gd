@@ -5,6 +5,10 @@ var speed: float = 750
 var traveled_distance: float = 0
 const RANGE: float = 1000
 
+func _ready():
+	# Add to bullets group for easy cleanup
+	add_to_group("bullets")
+
 func _physics_process(delta: float) -> void:
 	var movement = direction * speed * delta
 	global_position += movement
