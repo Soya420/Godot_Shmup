@@ -5,7 +5,6 @@ var high_score = 0
 
 func _ready():
 	%ScoreLabel.text = "Score: " + str(score)
-	# Initialize high score display
 	%GameOver/ColorRect/HighScore.text = "Highscore: " + str(high_score)
 
 func spawn_spider():
@@ -37,12 +36,10 @@ func _on_timer_guy_timeout() -> void:
 
 
 func _on_player_health_depleted():
-	# Stop spawning more enemies
 	%TimerSpider.stop()
 	%TimerGuy.stop()
 	await get_tree().create_timer(1).timeout
 	
-	# Update high score if current score is higher
 	if score > high_score:
 		high_score = score
 	
@@ -56,26 +53,20 @@ func _on_player_health_depleted():
 
 func _on_replay_button_pressed() -> void:
 	print("Replay button pressed!")
-	# Reset game state
 	get_tree().paused = false
 	reset_game()
 
 func reset_game():
 	print("Resetting game...")
-	# Reset score
 	score = 0
 	%ScoreLabel.text = "Score: " + str(score)
-	# Clear all enemies
 	clear_enemies()
-	# Reset player
 	reset_player()
 	
-	# Hide game over screen
 	%GameOver.visible = false
 	%ProgressBar.visible = true
 	%ScoreLabel.visible = true
 	
-	# Restart enemy spawning
 	%TimerSpider.start()
 	%TimerGuy.start()
 
@@ -96,18 +87,16 @@ func clear_enemies():
 		exp_item.queue_free()
 
 func reset_player():
-	# Reset player health and state
 	%Player.health = 100
 	%Player.is_dead = false
 	%Player.set_physics_process(true)
 	%ProgressBar.value = 100
-	# Reset player position to center
 	%Player.global_position = Vector2.ZERO
 	
-	# Reset weapon state
 	var weapon = %Player.get_node("Weapon")
 	weapon.can_shoot = true
 	weapon.shoot_timer = 0.0
+	weapon.RATE_OF_FIRE = 0.25 # Reset to default rate of fire
 
 
 func _on_game_over_exit_button_pressed() -> void:

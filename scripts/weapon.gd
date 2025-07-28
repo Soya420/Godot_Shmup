@@ -8,8 +8,13 @@ const BULLET_SCENE = preload("res://scenes/bullet.tscn")
 const SHOOT_SCENE = preload("res://scenes/shoot_animation.tscn")
 
 var shoot_timer: float = 0.0
-const RATE_OF_FIRE: float = 0.25
+var RATE_OF_FIRE: float = 0.3
 var can_shoot: bool = true
+
+func _on_exp_pickup():
+	# Decrease rate of fire (faster shooting) but don't let it go below 0.05
+	RATE_OF_FIRE = max(0.05, RATE_OF_FIRE - 0.005)
+	print("Rate of fire improved! New rate: ", RATE_OF_FIRE)
 
 func _physics_process(delta: float) -> void:
 	if player.is_dead:

@@ -11,5 +11,13 @@ func _ready():
 func _on_body_entered(body):
 	# Check if player collected the exp
 	if body != null and body.name == "Player":
-		# Add exp collection logic here if needed
+		# Get the player's weapon and improve rate of fire
+		var weapon = body.get_node("Weapon")
+		if weapon != null and weapon.has_method("_on_exp_pickup"):
+			weapon._on_exp_pickup()
+		
+		# Optional: Add pickup sound or effect here
+		# AudioSource.play_pickup_sound()
+		
+		# Remove the exp orb
 		queue_free()
