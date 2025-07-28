@@ -460,10 +460,12 @@ scale = Vector2(1.5, 1.5)
 collision_layer = 3
 
 [node name="TimerSpider" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.75
 autostart = true
 
 [node name="TimerGuy" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 4.0
 autostart = true
 

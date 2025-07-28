@@ -38,9 +38,8 @@ func _on_timer_guy_timeout() -> void:
 
 func _on_player_health_depleted():
 	# Stop spawning more enemies
-	$TimerSpider.stop()
-	$TimerGuy.stop()
-	
+	%TimerSpider.stop()
+	%TimerGuy.stop()
 	await get_tree().create_timer(1).timeout
 	
 	# Update high score if current score is higher
@@ -77,8 +76,8 @@ func reset_game():
 	%ScoreLabel.visible = true
 	
 	# Restart enemy spawning
-	$TimerSpider.start()
-	$TimerGuy.start()
+	%TimerSpider.start()
+	%TimerGuy.start()
 
 func clear_enemies():
 	# Remove all enemy spiders from the scene
@@ -90,6 +89,11 @@ func clear_enemies():
 	var bullets = get_tree().get_nodes_in_group("bullets")
 	for bullet in bullets:
 		bullet.queue_free()
+	
+	# Remove all exp items from the scene
+	var exp_items = get_tree().get_nodes_in_group("exp")
+	for exp_item in exp_items:
+		exp_item.queue_free()
 
 func reset_player():
 	# Reset player health and state

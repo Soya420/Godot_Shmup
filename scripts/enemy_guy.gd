@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if not is_dead:
 		var direction = global_position.direction_to(player.global_position)
-		velocity = direction * (200 + randi()%25)
+		velocity = direction * (200 + randi() % 25)
 		move_and_slide()
 		walk_animations(direction)
 
@@ -35,7 +35,6 @@ func deal_damage():
 		is_hurt = true
 		hurt_timer = HURT_DURATION
 		
-		take_dmg(direction)
 		if health <= 0:
 			die(direction)
 			
@@ -43,9 +42,8 @@ func deal_damage():
 # All Animation Functions: Die, Take Damage and Walk
 func die(direction):
 	is_dead = true
-	velocity = Vector2.ZERO
-	
-	# Emit signal to notify that spider died (for score)
+	velocity = Vector2.ZERO	
+	# Emit signal to notify that guy died (for score)
 	guy_died.emit()
 	
 	if direction.x > 0 && direction.y < 0: # Bottom Left of player
@@ -61,7 +59,17 @@ func die(direction):
 		animation_enemy.flip_h = true
 		animation_enemy.play("die_down")
 	
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.45).timeout
+	
+	var exp_scene = preload("res://scenes/exp.tscn")
+	if exp_scene != null:
+		var exp_drop = exp_scene.instantiate()
+		if exp_drop != null:
+			exp_drop.global_position = global_position
+			var current_scene = get_tree().current_scene
+			if current_scene != null:
+				current_scene.add_child(exp_drop)
+	
 	queue_free()
 
 func walk_animations(direction):
